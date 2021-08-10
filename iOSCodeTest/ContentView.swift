@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct ContentView: View {
     let news: [MenuItem] = [
@@ -31,10 +32,12 @@ struct ContentView: View {
         NavigationView {
             List(news) { new in
                 VStack(alignment: .leading) {
-                    NewsCell(news: new)
+                    NavigationLink(destination: SafariView(url: URL(string: new.url)!)) {
+                        NewsCell(news: new)
+                    }
                 }
             }
-            .navigationTitle("Reader view")
+            .navigationTitle("Aliens Reader View")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
